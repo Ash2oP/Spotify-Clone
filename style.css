@@ -2,27 +2,9 @@
     margin: 0;
 }
 body {
+    height: 100vh;
+    width: 100vw;
     background-color: black;
-}
-
-/* Utility Classes */
-.grid {
-    display: grid;
-}
-.flex {
-    display: flex;
-}
-.items-center {
-    align-items: center;
-}
-.justify-items-center {
-    justify-items: center;
-}
-.justify-content-center {
-    justify-content: center;
-}
-.hide {
-    display: none;
 }
 
 /* Navbar */
@@ -37,7 +19,6 @@ body {
     grid-column: 1/2;
 }
 .nav-logo img {
-    background-color: black;
     border-radius: 50%;
     border: none;
 }
@@ -106,25 +87,27 @@ body {
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
 }
+.search-bar-browse i {
+    font-size: 4vmin;
+}
 
 /* Main */
 main {
     width: 100vw;
-    height: 71vh;
-    grid-template-columns: 20% 80%;
+    height: 81vh;
+    grid-template-columns: 25% 75%;
 }
 .left {
     grid-column: 1/2;
     width: 99%;
-    height: 100%;
+    height: 80vh;
     background-color: #121212;
-    border-radius: 8px;
-    position: relative;
+    border-radius: 10px;
 }
 .right {
     grid-column: 2/3;
     width: 99%;
-    height: 100%;
+    height: 80vh;
     background-color: #121212;
     border-radius: 8px;
 }
@@ -132,7 +115,6 @@ main {
     grid-template-columns: 45% 35% 20%;
     height: 10%;
     width: 98%;
-    position: sticky;
 }
 .left-header span {
     font-size: 2.5vmin;
@@ -153,11 +135,13 @@ main {
 .left-content {
     height: 90%;
     width: 100%;
+    overflow-y: auto;
 }
 .left-top-bar {
     grid-template-columns: 20% 50% 30%;
     height: 7%;
     width: auto;
+    margin-bottom: 1vmin;
 }
 .top-bar-search-icon {
     height: 80%;
@@ -179,14 +163,19 @@ main {
     width: auto;
     flex-direction: column;
     flex-wrap: nowrap;
-    gap: 0;
+    gap: 2vmin;
 }
 .left-playlist {
     height: 18%;
     width: 98%;
     font-size: 2vmin;
+    background-color: #121212;
     color: #b3b3b3;
     grid-template-columns: 28% 72%;
+    border: none;
+}
+.left-playlist:hover {
+    cursor: pointer;
 }
 .playlist-icon-container {
     height: 8vmin;
@@ -200,4 +189,15 @@ main {
     justify-self: start;
     font-weight: 700;
     color: white;
+}
+
+/* Footer */
+footer {
+    height: 10vh;
+    width: 100vw;
+}
+.music-player {
+    height: 10vh;
+    width: 100vw;
+    background-color: black;
 }

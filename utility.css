@@ -1,0 +1,41 @@
+/* Utility Classes */
+.grid {
+    display: grid;
+}
+.flex {
+    display: flex;
+}
+.items-center {
+    align-items: center;
+}
+.justify-items-center {
+    justify-items: center;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.hide {
+    display: none;
+}
+.pointer {
+    cursor: pointer;
+}
+@media(max-width: 900px){
+    .responsive-hide {
+        display: none !important;
+    }
+}
+.invert {
+    filter: invert(1);
+}
+
+/* ScrollBar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #121212;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #1F1F1F;
+}

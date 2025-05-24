@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="utility.css">
     <title>Spotify Clone</title>
 </head>
 <body>
     <header>
         <div class="nav-bar grid justify-items-center items-center">
             <div class="nav-logo flex items-center justify-content-center">
-                <img src="assets/spotify.svg" alt="spotify">
+                <img class="invert" src="assets/logo.svg" alt="spotify">
             </div>
             <div class="nav-home flex items-center justify-content-center">
-                <button>
+                <button class="pointer">
                     <i class="fa-solid fa-house"></i>
                 </button>
             </div>
@@ -29,7 +30,7 @@
                     <div class="search-bar-hr"></div>
                 </div>
                 <div class="search-bar-browse flex items-center justify-content-center">
-                    <button>
+                    <button class="pointer">
                         <i class="fa-solid fa-box"></i>
                     </button>
                 </div>
@@ -40,40 +41,70 @@
         <div class="left">
             <div class="left-header grid items-center">
                 <span>Your Library</span>
-                <button>
+                <button class="pointer">
                     <i class="fa-solid fa-circle-plus"></i>
                 </button>
             </div>
             <div class="left-content">
                 <div class="left-top-bar grid items-center">
-                    <button class="top-bar-search-icon">
+                    <button class="top-bar-search-icon pointer">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                     <div class="left-search-bar hide"></div>
-                    <button class="left-sorting">
-                        <span>Recents</span>
+                    <button class="left-sorting pointer">
+                        <span class="responsive-hide">Recents</span>
                         <i class="fa-solid fa-bars"></i>
                     </button>
                 </div>
                 <div class="left-playlist-section flex">
-                    <div class="left-playlist grid items-center justify-items-center">
+                    <button class="left-playlist pointer grid items-center justify-items-center">
                         <div class="playlist-icon-container flex items-center justify-content-center">
                             <i class="fa-solid fa-music"></i>
                         </div>
-                        <span>My Playlist</span>
-                    </div>
-                    <div class="left-playlist grid items-center justify-items-center">
+                        <span>Demo Playlist</span>
+                    </button>
+                    <button class="left-playlist pointer grid items-center justify-items-center">
                         <div class="playlist-icon-container flex items-center justify-content-center">
                             <i class="fa-solid fa-music"></i>
                         </div>
-                        <span>My Playlist</span>
-                    </div>
-                    <div class="left-playlist grid items-center justify-items-center">
+                        <span>Demo Playlist</span>
+                    </button>
+                    <button class="left-playlist pointer grid items-center justify-items-center">
                         <div class="playlist-icon-container flex items-center justify-content-center">
                             <i class="fa-solid fa-music"></i>
                         </div>
-                        <span>My Playlist</span>
-                    </div>
+                        <span>Demo Playlist</span>
+                    </button>
+                    <button class="left-playlist pointer grid items-center justify-items-center">
+                        <div class="playlist-icon-container flex items-center justify-content-center">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <span>Demo Playlist</span>
+                    </button>
+                    <button class="left-playlist pointer grid items-center justify-items-center">
+                        <div class="playlist-icon-container flex items-center justify-content-center">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <span>Demo Playlist</span>
+                    </button>
+                    <button class="left-playlist pointer grid items-center justify-items-center">
+                        <div class="playlist-icon-container flex items-center justify-content-center">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <span>Demo Playlist</span>
+                    </button>
+                    <button class="left-playlist pointer grid items-center justify-items-center">
+                        <div class="playlist-icon-container flex items-center justify-content-center">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <span>Demo Playlist</span>
+                    </button>
+                    <button class="left-playlist pointer grid items-center justify-items-center">
+                        <div class="playlist-icon-container flex items-center justify-content-center">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <span>Demo Playlist</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -83,7 +114,7 @@
 
     </main>
     <footer>
-
+        <div class="music-player"></div>
     </footer>
     
     <script src="app.js"></script>
