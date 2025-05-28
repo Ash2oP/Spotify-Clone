@@ -45,6 +45,8 @@
         </div>
     </header>
     <main class="grid justify-items-center items-center">
+        
+        <!-- Left Side Bar -->
         <div class="left">
             <div class="left-header grid items-center">
                 <span>Your Library</span>
@@ -116,6 +118,7 @@
             </div>
         </div>
 
+        <!-- Main Screen -->
         <div class="right grid">
             <div class="right-header grid items-center">
                 <span><h3>Made For You</h3></span>
@@ -128,7 +131,7 @@
                         <img src="assets/shubh.jpg" alt="" class="curved-border">
                     </div>
                     <div class="card-disc flex justify-content-center items-center">
-                        <span>Songs By Shubh</span>
+                        <span>This Is Shubh</span>
                     </div>
                     <div class="play-icon flex justify-content-center items-center">
                         <button class="playlist-button">
@@ -144,7 +147,7 @@
                         <img src="assets/AP.Dhillon1.jpg" alt="" class="curved-border">
                     </div>
                     <div class="card-disc flex justify-content-center items-center">
-                        <span>Songs By Dhillon</span>
+                        <span>This Is AP Dhillon</span>
                     </div>
                     <div class="play-icon flex justify-content-center items-center">
                         <button class="playlist-button">
@@ -157,8 +160,18 @@
         </div>
 
         <!-- Playlist Section -->
-        <div class="playlist-container hide"></div>
+        <div class="playlist-container hide grid">
+            <!-- Header -->
+             <div class="playlist-header grid justify-items-center items-center">
 
+                <div class="playlist-header-pfp flex justify-content-center items-center">IMG</div>
+                <div class="playlist-header-title flex items-center">TITLE</div>
+
+             </div>
+
+             <!-- Content -->
+              <div class="playlist-song-section"></div>
+        </div>
 
     </main>
     <footer>

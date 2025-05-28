@@ -1,13 +1,19 @@
-let playlistBtn = document.querySelectorAll(".playlist-button");
-let playlistContainer = document.querySelector(".playlist-container");
+const playlistEle = {
+    playlistBtn : document.querySelectorAll(".playlist-button"),
+    playlistContainer : document.querySelector(".playlist-container"),
+    playlistPfp : document.querySelectorAll(".card-image"),
+    playlistPfpContainer : document.querySelector(".playlist-header-pfp"),
+    playlistTitle : document.querySelectorAll(".card-disc"),
+    playlistTitleContainer : document.querySelector(".playlist-header-title")
+};
+let isPlaylistOpen = false;
 let backBtn = document.querySelector("#Back-btn");
 let homeBtn = document.querySelector("#Home-btn");
-let isPlaylistOpen = false;
 
 // Hiding Playlist
 const hidePlaylist = () => {
     if(isPlaylistOpen){
-        playlistContainer.classList.add("hide");
+        playlistEle.playlistContainer.classList.add("hide");
         isPlaylistOpen = false;
     }
 }
@@ -15,17 +21,24 @@ const hidePlaylist = () => {
 // Activating Playlist
 const activatePlaylist = () => {
     if(isPlaylistOpen == false){
-        playlistContainer.classList.remove("hide");
+        playlistEle.playlistContainer.classList.remove("hide");
         isPlaylistOpen = true;
     }
 }
 
-for(let btn of playlistBtn) {
+// Filling Up Playlist
+const fillPLaylist = (idx) => {
+    playlistEle.playlistPfpContainer.innerHTML = playlistEle.playlistPfp[idx].innerHTML;
+    playlistEle.playlistTitleContainer.innerHTML = playlistEle.playlistTitle[idx].innerHTML;
+}
+
+playlistEle.playlistBtn.forEach((btn, idx) => {
     btn.addEventListener("click", () => {
         window.history.pushState({ view: "playlist"}, "", "#playlist");
+        fillPLaylist(idx);
         activatePlaylist();
-    });
-}
+    })
+});
 
 homeBtn.addEventListener("click", () => {
     window.history.pushState({view : "home"}, "", "#home");

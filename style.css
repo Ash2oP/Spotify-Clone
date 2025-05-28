@@ -242,6 +242,8 @@ main {
     height: 20%;
     width: 90%;
     color: #b3b3b3;
+    font-size: 3vmin;
+    font-weight: 500;
 }
 .play-icon {
     background-color: transparent;
@@ -280,6 +282,39 @@ main {
     width: 99%;
     height: 80vh;
     border-radius: 8px;
+    grid-template-rows: 45% 55%;
+}
+.playlist-header {
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 100%;
+    border-bottom: 0.1px solid black;
+}
+.playlist-header-pfp {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    height: 100%;
+    width: 100%;
+}
+.playlist-header-pfp img {
+    height: 90%;
+    width: 90%;
+}
+.playlist-header-title {
+    grid-row: 1/2;
+    grid-column: 2/3;
+    height: 100%;
+    width: 100%;
+    font-size: 7vmin;
+    color: #b3b3b3;
+    font-weight: 700;
+}
+.playlist-song-section {
+    grid-row: 2/3;
+    height: 100%;
+    width: 100%;
 }
 
 /* Footer */
