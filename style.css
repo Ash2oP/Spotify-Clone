@@ -23,12 +23,12 @@ body {
     border-radius: 50%;
     border: none;
 }
-.nav-home {
+.nav-icon {
     height: 90%;
     width: 10vmin;
     justify-self: end;
 }
-.nav-home button {
+.nav-icon button {
     width: 80%;
     height: 80%;
     border-radius: 50%;
@@ -90,11 +90,6 @@ body {
 }
 .search-bar-browse i {
     font-size: 4vmin;
-}
-.nav-back-container {
-    height: 90%;
-    width: 10vmin;
-    justify-self: end;
 }
 
 /* Main */
@@ -273,7 +268,7 @@ main {
 }
 .play-icon button:hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 /* Playlist */

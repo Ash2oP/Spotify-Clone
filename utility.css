@@ -20,6 +20,12 @@
 .pointer {
     cursor: pointer;
 }
+.scale {
+    transition: all 0.2s ease;
+}
+.scale:hover {
+    transform: scale(1.1);
+}
 @media(max-width: 900px){
     .responsive-hide {
         display: none !important;
