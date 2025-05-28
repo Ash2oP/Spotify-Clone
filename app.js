@@ -4,16 +4,32 @@ let backBtn = document.querySelector("#Back-btn");
 let homeBtn = document.querySelector("#Home-btn");
 let isPlaylistOpen = false;
 
+// Hiding Playlist
+const hidePlaylist = () => {
+    if(isPlaylistOpen){
+        playlistContainer.classList.add("hide");
+        isPlaylistOpen = false;
+    }
+}
+
+// Activating Playlist
+const activatePlaylist = () => {
+    if(isPlaylistOpen == false){
+        playlistContainer.classList.remove("hide");
+        isPlaylistOpen = true;
+    }
+}
+
 for(let btn of playlistBtn) {
     btn.addEventListener("click", () => {
         window.history.pushState({ view: "playlist"}, "", "#playlist");
-        playlistContainer.classList.remove("hide");
-        isPlaylistOpen = true;
+        activatePlaylist();
     });
 }
 
 homeBtn.addEventListener("click", () => {
     window.history.pushState({view : "home"}, "", "#home");
+    hidePlaylist();
 });
 
 backBtn.addEventListener("click", () => {
@@ -22,7 +38,9 @@ backBtn.addEventListener("click", () => {
 
 window.addEventListener("popstate", (data) => {
     if( !data.state || data.state.view !== "playlist"){
-        playlistContainer.classList.add("hide");
-        isPlaylistOpen = false;
+        hidePlaylist();
+    }
+    if( data.state.view === "playlist"){
+        activatePlaylist();
     }
 });
