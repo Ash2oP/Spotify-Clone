@@ -313,8 +313,49 @@ main {
 }
 .playlist-song-section {
     grid-row: 2/3;
-    height: 100%;
-    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.song-section-topbar {
+    height: 50%;
+    grid-template-rows: 60% 40%;
+}
+.song-section-topbar-r1 {
+    grid-row: 1/2;
+    grid-template-columns: 12% 10% 10% 48% 20%;
+}
+.song-play-container {
+    grid-column: 1/2;
+}
+.song-play-container button {
+    height: 60%;
+    width: 60%;
+    background-color: #1ED760;
+    font-size: 4vmin;
+}
+.topbar-add-library {
+    grid-column: 2/3;
+    background-color: green;
+}
+.topbar-menu-container {
+    grid-column: 3/4;
+    background-color: yellow;
+}
+.song-section-sort {
+    grid-column: 5/6;
+    background-color: green;
+}
+.song-section-topbar-r2 {
+    grid-row: 2/3;
+    background-color: blue;
+}
+.song-section-hr {
+    height: 1px;
+    width: 90%;
+    background-color: #b3b3b3;
+}
+.song-container {
+    height: 50%;
 }
 
 /* Footer */
