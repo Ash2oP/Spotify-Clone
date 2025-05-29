@@ -335,11 +335,44 @@ main {
 }
 .topbar-add-library {
     grid-column: 2/3;
-    background-color: green;
+}
+.topbar-add-library button {
+    height: 60%;
+    width: 60%;
+    background-color: transparent;
+    color: #656565;
+    font-size: 5vmin;
+    transition: all 0.2s ease;
+}
+.topbar-add-library button:hover {
+    color: #b3b3b3;
 }
 .topbar-menu-container {
     grid-column: 3/4;
-    background-color: yellow;
+}
+.topbar-menu-container button {
+    height: 60%;
+    width: 60%;
+    background-color: transparent;
+    color: #656565;
+    font-size: 5vmin;
+    transition: all 0.2s ease;
+}
+.topbar-menu-container button:hover {
+    color: #b3b3b3;
+}
+.topbar-menu-dropdown {
+    position: absolute;
+    height: 10vmin;
+    width: 15vmin;
+    background-color: #1F1F1F;
+    left: 45%;
+    top: 38%;
+    grid-template-rows: 50% 50%;
+}
+.topbar-menu-dropdown a {
+    text-decoration: none !important;
+    color: #b3b3b3;
 }
 .song-section-sort {
     grid-column: 5/6;
