@@ -282,7 +282,8 @@ main {
     width: 99%;
     height: 80vh;
     border-radius: 8px;
-    grid-template-rows: 45% 55%;
+    grid-template-rows: 40% 60%;
+    overflow-y: auto;
 }
 .playlist-header {
     grid-row: 1/2;
@@ -317,7 +318,7 @@ main {
     flex-wrap: nowrap;
 }
 .song-section-topbar {
-    height: 50%;
+    height: 40%;
     grid-template-rows: 60% 40%;
 }
 .song-section-topbar-r1 {
@@ -329,7 +330,7 @@ main {
 }
 .song-play-container button {
     height: 60%;
-    width: 60%;
+    width: 55%;
     background-color: #1ED760;
     font-size: 4vmin;
 }
@@ -367,7 +368,7 @@ main {
     width: 15vmin;
     background-color: #1F1F1F;
     left: 45%;
-    top: 38%;
+    top: 34%;
     grid-template-rows: 50% 50%;
 }
 .topbar-menu-dropdown a {
@@ -394,12 +395,13 @@ main {
 }
 .song-section-topbar-r2 {
     grid-row: 2/3;
-    grid-template-columns: 9% 5% 10% 26% 10% 30% 10%;
+    grid-template-columns: 7% 7% 36% 40% 10%;
     color: #b3b3b3;
 }
 .span-1 {
+    grid-column: 2/3;
     align-items: end;
-    justify-content: end;
+    justify-content: start;
 }
 .span-title {
     grid-column: 3/4;
@@ -407,12 +409,12 @@ main {
     justify-content: start;
 }
 .span-album {
-    grid-column: 5/6;
+    grid-column: 4/5;
     justify-content: start;
     align-items: end;
 }
 .time-icon-container {
-    grid-column: 7/8;
+    grid-column: 5/6;
     justify-content: start;
     align-items: end;
 }
@@ -425,7 +427,71 @@ main {
     background-color: #656565;
 }
 .song-container {
-    height: 50%;
+    height: 60%;
+    color: #b3b3b3;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.song-card-container {
+    height: 14vmin;
+    width: 90%;
+}
+.song-card {
+    grid-template-columns: 5% 5% 40% 35% 9% 6%;
+    height: 10vmin;
+}
+.song-card:hover {
+    background-color: #1F1F1F;
+}
+.song-idx {
+    grid-column: 1/2;
+}
+.song-data {
+    grid-column: 3/4;
+    width: 40%;
+    justify-content: start;
+}
+.song-img {
+    height: 80%;
+    width: 30%;
+    margin-right: 1.5vmin;
+}
+.song-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 12%;
+}
+.song-name {
+    height: 100%;
+    width: 70%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 3px;
+}
+.song-name a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 2vmin;
+}
+.song-card a:hover {
+    text-decoration: underline;
+}
+#song-title {
+    color: white;
+    font-weight: 500;
+    font-size: 2.5vmin;
+}
+.song-album {
+    grid-column: 4/5;
+}
+.song-album a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 2.5vmin;
+}
+.song-length {
+    grid-column: 6/7;
 }
 
 /* Footer */

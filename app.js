@@ -8,25 +8,27 @@ const playlistEle = {
     playlistMenuIcon : document.querySelector("#topbar-menu-icon"),
     playlistTopbarMenu : document.querySelector(".topbar-menu-dropdown")
 };
-let isPlaylistOpen = false;
-let isPlaylistMenuOpen = false;
+const bools = {
+    isPlaylistOpen : false,
+    isPlaylistMenuOpen : false
+};
 let backBtn = document.querySelector("#Back-btn");
 let homeBtn = document.querySelector("#Home-btn");
 
 
 // Hiding Playlist
 const hidePlaylist = () => {
-    if(isPlaylistOpen){
+    if(bools.isPlaylistOpen){
         playlistEle.playlistContainer.classList.add("hide");
-        isPlaylistOpen = false;
+        bools.isPlaylistOpen = false;
     }
 }
 
 // Activating Playlist
 const activatePlaylist = () => {
-    if(isPlaylistOpen == false){
+    if(bools.isPlaylistOpen == false){
         playlistEle.playlistContainer.classList.remove("hide");
-        isPlaylistOpen = true;
+        bools.isPlaylistOpen = true;
     }
 }
 
@@ -39,13 +41,13 @@ const fillPLaylist = (idx) => {
 // Hiding Playlist Topbar Menu
 const hidePLaylistTopbarMenu = () => {
     playlistEle.playlistTopbarMenu.classList.add("hide");
-    isPlaylistMenuOpen = false;
+    bools.isPlaylistMenuOpen = false;
 }
 
 // Activate Playlist Topbar Menu
 const activatePLaylistTopbarMenu = () => {
     playlistEle.playlistTopbarMenu.classList.remove("hide");
-    isPlaylistMenuOpen = true;
+    bools.isPlaylistMenuOpen = true;
 }
 
 playlistEle.playlistBtn.forEach((btn, idx) => {
@@ -77,7 +79,7 @@ window.addEventListener("popstate", (data) => {
 });
 
 playlistEle.playlistMenuIcon.addEventListener("click", () => {
-    if(isPlaylistMenuOpen){
+    if(bools.isPlaylistMenuOpen){
         hidePLaylistTopbarMenu();
     }
     else {
