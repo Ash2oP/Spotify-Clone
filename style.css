@@ -439,6 +439,10 @@ main {
 .song-card {
     grid-template-columns: 5% 5% 40% 35% 9% 6%;
     height: 10vmin;
+    border: transparent;
+    background-color: transparent;
+    color: #b3b3b3;
+    font-size: 2vmin;
 }
 .song-card:hover {
     background-color: #1F1F1F;
