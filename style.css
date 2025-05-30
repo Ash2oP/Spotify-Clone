@@ -322,7 +322,7 @@ main {
 }
 .song-section-topbar-r1 {
     grid-row: 1/2;
-    grid-template-columns: 12% 10% 10% 48% 20%;
+    grid-template-columns: 12% 10% 10% 58% 10%;
 }
 .song-play-container {
     grid-column: 1/2;
@@ -376,16 +376,53 @@ main {
 }
 .song-section-sort {
     grid-column: 5/6;
-    background-color: green;
+}
+.song-section-sort button {
+    height: 60%;
+    width: 60%;
+    grid-template-columns: 50% 50%;
+    background-color: transparent;
+    border: transparent;
+    color: #656565;
+    font-size: 2vmin;
+}
+.song-section-sort button:hover {
+    color: #b3b3b3;
+}
+.song-section-sort span {
+    justify-self: end;
 }
 .song-section-topbar-r2 {
     grid-row: 2/3;
-    background-color: blue;
+    grid-template-columns: 9% 5% 10% 26% 10% 30% 10%;
+    color: #b3b3b3;
+}
+.span-1 {
+    align-items: end;
+    justify-content: end;
+}
+.span-title {
+    grid-column: 3/4;
+    align-items: end;
+    justify-content: start;
+}
+.span-album {
+    grid-column: 5/6;
+    justify-content: start;
+    align-items: end;
+}
+.time-icon-container {
+    grid-column: 7/8;
+    justify-content: start;
+    align-items: end;
+}
+.time-icon-container > * {
+    margin-bottom: 3px;
 }
 .song-section-hr {
     height: 1px;
     width: 90%;
-    background-color: #b3b3b3;
+    background-color: #656565;
 }
 .song-container {
     height: 50%;
