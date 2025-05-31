@@ -43,7 +43,7 @@ const fillSongs = async (data, i) => {
                             <div class="song-img curved-border"><img src="assets/dilnu_img.jpg" alt=""></div>
                             <div class="song-name flex justify-content-center">
                                 <a id="song-title" href="#">Name</a>
-                                <a href="#">Artist</a>
+                                <a id="song-artist" href="#">Artist</a>
                             </div>
                         </div>
                         <div class="song-album full-height full-width flex items-center"><a href="#">Album</a></div>
@@ -61,7 +61,10 @@ const fillSongDetails = async (data, i) => {
         songIdx : document.querySelectorAll(".song-idx"),
         songImg : document.querySelectorAll(".song-img"),
         playlistKey : Object.keys(data)[i],
-        songKeys : Object.keys(data[Object.keys(data)[i]])
+        songKeys : Object.keys(data[Object.keys(data)[i]]),
+        songTitle : document.querySelectorAll("#song-title"),
+        songArtist : document.querySelectorAll("#song-artist"),
+        songAlbum : document.querySelectorAll(".song-album a")
     }
 
     // Added Index
@@ -71,7 +74,22 @@ const fillSongDetails = async (data, i) => {
 
     // Add Img
     tempSongsUI.songImg.forEach((ele, idx) => {
-        ele.innerHTML = `<img src="${data[tempSongsUI.playlistKey]?.[tempSongsUI.songKeys[idx]]?.["song_img"]}" alt="">`
+        ele.innerHTML = `<img src="${data[tempSongsUI.playlistKey]?.[tempSongsUI.songKeys[idx]]?.["song_img"]}" alt="">`;
+    })
+
+    // Add Song Name
+    tempSongsUI.songTitle.forEach((ele, idx) => {
+        ele.innerHTML = `${data[tempSongsUI.playlistKey]?.[tempSongsUI.songKeys[idx]]?.["song_name"]}`;
+    })
+    
+    // Add Artist Name
+    tempSongsUI.songArtist.forEach((ele, idx) => {
+        ele.innerHTML = `${data[tempSongsUI.playlistKey]?.[tempSongsUI.songKeys[idx]]?.["song_artist"]}`;
+    })
+
+    // Add Album
+    tempSongsUI.songAlbum.forEach((ele, idx) => {
+        ele.innerHTML = `${data[tempSongsUI.playlistKey]?.[tempSongsUI.songKeys[idx]]?.["song_album"]}`;
     })
 }
 
