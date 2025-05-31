@@ -11,6 +11,8 @@ Author- Ashish Raj Singh <br>
 - flex-direction is better for stacking than just flex-wrap: wrap .
 - Learnt about the methods in browser history API and SPAs.
 - Learnt how to interchange views without reloading the page.
+- Using flex-direction: column; interchanges cross & main axis.
+-
 
 
 #### To Learn after this:

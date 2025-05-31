@@ -4,7 +4,8 @@
             "song_name": "Baller",
             "song_album": "Baller",
             "song_artist": "Shubh,Ikky",
-            "song_dir": "assets/songs/Shubh/Baller Shubh 320 Kbps.mp3"
+            "song_dir": "assets/songs/Shubh/Baller Shubh 320 Kbps.mp3",
+            "song_img": "assets/baller shubh.jpg"
         },
         "2": {
             "song_name": "Cheques",
