@@ -12,7 +12,7 @@ Author- Ashish Raj Singh <br>
 - Learnt about the methods in browser history API and SPAs.
 - Learnt how to interchange views without reloading the page.
 - Using flex-direction: column; interchanges cross & main axis.
--
+- data { "abc" : ..., "def" : ...}, Object.keys(data) gives an array ["abc", "def"]
 
 
 #### To Learn after this:

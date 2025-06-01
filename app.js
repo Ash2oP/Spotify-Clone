@@ -11,13 +11,13 @@ const playlistEle = {
 const bools = {
     isPlaylistOpen : false,
     isPlaylistMenuOpen : false,
-    isSongTemplateIn : false
 };
 const songsUI = {
-    songsContainer : document.querySelector(".song-container")
+    songsContainer : document.querySelector(".song-container"),
 }
 let backBtn = document.querySelector("#Back-btn");
 let homeBtn = document.querySelector("#Home-btn");
+let libraryContent = document.querySelector(".left-content");
 
 // Fetch Song Data
 const getSongData = async () => {
@@ -28,9 +28,8 @@ const getSongData = async () => {
 
 // Fill Songs List
 const fillSongs = async (data, i) => {
-    if(bools.isSongTemplateIn == true){
-        return;
-    }
+    // Clearing the Container
+    songsUI.songsContainer.innerHTML = "";
     
     // Add Songs Template
     for(let j = 0; j < Object.keys(data[Object.keys(data)[i]]).length; j++){
@@ -40,7 +39,7 @@ const fillSongs = async (data, i) => {
                             <!-- Items -->
                         <div class="song-idx full-height full-width flex items-center justify-content-center"><span>idx</span></div>
                         <div class="song-data full-height flex items-center">
-                            <div class="song-img curved-border"><img src="assets/dilnu_img.jpg" alt=""></div>
+                            <div class="song-img curved-border"><img src="" alt=""></div>
                             <div class="song-name flex justify-content-center">
                                 <a id="song-title" href="#">Name</a>
                                 <a id="song-artist" href="#">Artist</a>
@@ -48,11 +47,11 @@ const fillSongs = async (data, i) => {
                         </div>
                         <div class="song-album full-height full-width flex items-center"><a href="#">Album</a></div>
                         <div class="song-length full-height full-width flex items-center"><span>time</span></div>
-
+                        <audio src="" class="song"></audio>
                     </button>
+                    
                     </div>`;
     }
-    bools.isSongTemplateIn = true;
 }
 
 // Fill Up Song Details
@@ -62,9 +61,12 @@ const fillSongDetails = async (data, i) => {
         songImg : document.querySelectorAll(".song-img"),
         playlistKey : Object.keys(data)[i],
         songKeys : Object.keys(data[Object.keys(data)[i]]),
+        songsListArr : data[Object.keys(data)[i]],
         songTitle : document.querySelectorAll("#song-title"),
         songArtist : document.querySelectorAll("#song-artist"),
-        songAlbum : document.querySelectorAll(".song-album a")
+        songAlbum : document.querySelectorAll(".song-album a"),
+        songBtn : document.querySelectorAll(".song-card"),
+        songs : document.querySelectorAll(".song")
     }
 
     // Added Index
@@ -74,23 +76,52 @@ const fillSongDetails = async (data, i) => {
 
     // Add Img
     tempSongsUI.songImg.forEach((ele, idx) => {
-        ele.innerHTML = `<img src="${data[tempSongsUI.playlistKey]?.[tempSongsUI.songKeys[idx]]?.["song_img"]}" alt="">`;
+        ele.innerHTML = `<img src="${tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_img"]}" alt="">`;
     })
 
     // Add Song Name
     tempSongsUI.songTitle.forEach((ele, idx) => {
-        ele.innerHTML = `${data[tempSongsUI.playlistKey]?.[tempSongsUI.songKeys[idx]]?.["song_name"]}`;
+        ele.innerHTML = `${tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_name"]}`;
     })
     
     // Add Artist Name
     tempSongsUI.songArtist.forEach((ele, idx) => {
-        ele.innerHTML = `${data[tempSongsUI.playlistKey]?.[tempSongsUI.songKeys[idx]]?.["song_artist"]}`;
+        ele.innerHTML = `${tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_artist"]}`;
     })
 
     // Add Album
     tempSongsUI.songAlbum.forEach((ele, idx) => {
-        ele.innerHTML = `${data[tempSongsUI.playlistKey]?.[tempSongsUI.songKeys[idx]]?.["song_album"]}`;
+        ele.innerHTML = `${tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_album"]}`;
     })
+
+    // Connect the Songs
+    tempSongsUI.songs.forEach((ele, idx) => {
+        ele.setAttribute("src", `${tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_dir"]}`);
+        ele.load();
+    })
+
+    let currSongIndex = -1;
+
+    // Play Song
+    tempSongsUI.songBtn.forEach((ele, idx) => {
+        ele.addEventListener("click", () => {
+           const clickedSong = tempSongsUI.songs[idx];
+           console.log(clickedSong);
+
+           if(currSongIndex == idx && !clickedSong.paused){
+                clickedSong.pause();
+                currSongIndex = -1;
+           } else {
+                tempSongsUI.songs.forEach((ele) => {
+                    ele.pause();
+                });
+                clickedSong.play();
+                currSongIndex = idx;
+           } 
+            
+        })
+    })
+    
 }
 
 // Hiding Playlist
@@ -166,3 +197,10 @@ playlistEle.playlistMenuIcon.addEventListener("click", () => {
         activatePLaylistTopbarMenu();
     }
 });
+
+libraryContent.addEventListener("scroll", () => {
+    if(bools.hasScrolledLibrary == false){
+        libraryContent.classList.add("bottom-shadow");
+    }
+})
+

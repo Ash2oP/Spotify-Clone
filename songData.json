@@ -5,14 +5,14 @@
             "song_album": "Baller",
             "song_artist": "Shubh,Ikky",
             "song_dir": "assets/songs/Shubh/Baller Shubh 320 Kbps.mp3",
-            "song_img": "assets/baller shubh.jpg"
+            "song_img": "assets/images/baller shubh.jpg"
         },
         "2": {
             "song_name": "Cheques",
             "song_album": "Still Rollin",
             "song_artist": "Shubh",
             "song_dir": "assets/songs/Shubh/Cheques.mp3",
-            "song_img": "assets/stillrollin_img.jpg"
+            "song_img": "assets/images/stillrollin_img.jpg"
         }
     },
     "this is ap dhillon": {
@@ -21,14 +21,14 @@
             "song_album": "Two Hearts Never Break The Same",
             "song_artist": "AP Dhillon,Shinda Kahlon",
             "song_dir": "assets/songs/AP Dhillon/Dil Nu.mp3",
-            "song_img": "assets/dilnu_img.jpg"
+            "song_img": "assets/images/dilnu_img.jpg"
         },
         "2": {
             "song_name": "Summer High",
             "song_album": "Summer High",
             "song_artist": "AP Dhillon",
             "song_dir": "assets/songs/AP Dhillon/Summer High - Ap Dhillon 320 Kbps.mp3",
-            "song_img": "assets/summerhigh_img.jpg"
+            "song_img": "assets/images/summerhigh_img.jpg"
         }
     }
 }
