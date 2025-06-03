@@ -14,9 +14,14 @@ const bools = {
 };
 const songsUI = {
     songsContainer : document.querySelector(".song-container"),
-}
-let backBtn = document.querySelector("#Back-btn");
-let homeBtn = document.querySelector("#Home-btn");
+    volumeBar : document.querySelector(".volume-bar > input"),
+};
+const btns = {
+    backBtn : document.querySelector("#Back-btn"),
+    homeBtn : document.querySelector("#Home-btn"),
+    volumeOn : document.querySelector(".volume-on"),
+    volumeOff : document.querySelector(".volume-off")
+};
 let libraryContent = document.querySelector(".left-content");
 
 // Fetch Song Data
@@ -169,13 +174,13 @@ playlistEle.playlistBtn.forEach((btn, idx) => {
     })
 });
 
-homeBtn.addEventListener("click", () => {
+btns.homeBtn.addEventListener("click", () => {
     window.history.pushState({view : "home"}, "", "#home");
     hidePlaylist();
     hidePLaylistTopbarMenu();
 });
 
-backBtn.addEventListener("click", () => {
+btns.backBtn.addEventListener("click", () => {
     window.history.back();
 });
 
@@ -202,5 +207,16 @@ libraryContent.addEventListener("scroll", () => {
     if(bools.hasScrolledLibrary == false){
         libraryContent.classList.add("bottom-shadow");
     }
-})
+});
 
+btns.volumeOn.addEventListener("click", () => {
+    btns.volumeOff.classList.remove("hide");
+    btns.volumeOn.classList.add("hide");
+    songsUI.volumeBar.value = '0';
+});
+
+btns.volumeOff.addEventListener("click", () => {
+    btns.volumeOff.classList.add("hide");
+    btns.volumeOn.classList.remove("hide");
+    songsUI.volumeBar.value = '100';
+});
