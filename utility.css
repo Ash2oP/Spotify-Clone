@@ -17,6 +17,12 @@
 .justify-self-end {
     justify-self: end;
 }
+.justify-self-start {
+    justify-self: start;
+}
+.justify-self-center {
+    justify-self: center;
+}
 .hide {
     display: none;
 }

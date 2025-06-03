@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 body {
     height: 100vh;
@@ -508,7 +509,104 @@ footer {
     width: 100vw;
 }
 .music-player {
-    height: 10vh;
-    width: 100vw;
-    background-color: black;
+    grid-template-columns: 7% 10% 20% 30% 13% 20%;
+}
+.player-song-img {
+    grid-column: 1/2;
+}
+.player-song-img img {
+    height: 80%;
+    width: 60%;
+}
+.player-song-details {
+    grid-column: 2/3;
+    grid-template-rows: 60% 40%;
+}
+.player-song-details a {
+    text-decoration: none;
+    font-size: 2.5vmin;
+    color: #b3b3b3;
+}
+.player-song-artist a {
+    font-size: 2vmin;
+    color: #656565;
+}
+.player-btn-section {
+    grid-column: 4/5;
+    grid-template-rows: 60% 40%;
+}
+.player-btn-container {
+    grid-template-columns: 13% 15% 15% 15% 15% 15%;
+}
+.player-btn-container button {
+    height: 90%;
+    width: 50%;
+    background-color: transparent;
+    color: #b3b3b3;
+    font-size: 3vmin;
+}
+.player-btn-container button.music-player-play {
+    background-color: white;
+    color: #121212;
+    height: 95%;
+    width: 90%;
+}
+.player-song-timebar {
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 100%;
+    color: #b3b3b3;
+}
+.song-curr-time {
+    justify-content: end;
+}
+.song-time-back {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    grid-template-columns: 1% 98%;
+}
+.song-time-back div {
+    grid-column: 2/3;
+    height: 3px;
+    width: 100%;
+    background-color: #656565;
+}
+.song-time-front {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    z-index: 1000;
+    grid-template-columns: 1% 98%;
+}
+.song-time-front div {
+    grid-column: 2/3;
+    height: 3px;
+    width: 0%;
+    background-color: #b3b3b3;
+}
+.player-volume {
+    grid-column: 6/7;
+    grid-template-columns: 20% 20% 60%;
+    grid-row: 100%;
+}
+.player-volume button {
+    background-color: transparent;
+    color: #b3b3b3;
+    height: 80%;
+    width: 80%;
+    font-size: 2.5vmin;
+}
+.player-volume .volume-on {
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+.player-volume .volume-off {
+    grid-row: 1/2;
+    grid-column: 2/3;
+    z-index: 1000;
+}
+.volume-bar {
+    height: 80%;
+    width: 80%;
+}
+.volume-bar input {
+    accent-color: #1ED760;
 }

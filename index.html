@@ -162,7 +162,7 @@
         <!-- Playlist Section -->
         <div class="playlist-container hide grid">
             <!-- Header -->
-             <div class="playlist-header grid justify-items-center items-center">
+             <div class="playlist-header grid justify-items-center items-center bottom-shadow">
 
                 <div class="playlist-header-pfp flex justify-content-center items-center">IMG</div>
                 <div class="playlist-header-title flex items-center">TITLE</div>
@@ -229,7 +229,64 @@
 
     </main>
     <footer>
-        <div class="music-player">
+        <div class="music-player grid full-height full-width items-center">
+            <div class="player-song-img full-height full-width flex justify-content-center items-center">
+                <img src="assets/images/baller shubh.jpg" alt="" class="curved-border">
+            </div>
+            <div class="player-song-details full-height full-width grid">
+                <span class="full-width full-height flex items-center player-song-name"><a href="#">Name</a></span>
+                <span class="full-width full-height flex player-song-artist"><a href="#">Artist</a></span>
+            </div>
+            <div class="player-btn-section full-height full-width grid">
+                <div class="player-btn-container grid full-width full-height justify-items-center items-center">
+                    <div class="white-space full-height full-width"></div>
+                    <!-- Nav Buttons -->
+                    <button class="circle scale justify-self-end">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                    <button class="circle scale">
+                        <i class="fa-solid fa-backward-step"></i>
+                    </button>
+                    <button class="circle scale music-player-play">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                    <button class="circle scale">
+                        <i class="fa-solid fa-forward-step"></i>
+                    </button>
+                    <button class="circle scale justify-self-start">
+                        <i class="fa-solid fa-repeat"></i>
+                    </button>
+                </div>
+                <!-- Timebar -->
+                <div class="player-song-timebar full-height full-width grid items-center">
+                    <div class="song-curr-time full-height full-width flex items-center">
+                        <span>0:00</span>
+                    </div>
+                    <div class="song-time-back full-height full-width grid items-center">
+                        <div class="curved-border"></div>
+                    </div>
+                    <div class="song-time-front full-height full-width grid items-center">
+                        <div class="curved-border"></div>
+                    </div>
+                    <div class="song-full-time full-height full-width flex items-center">
+                        <span>0:00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="player-volume full-height full-width grid justify-items-center items-center">
+                <button class="circle scale">
+                    <i class="fa-solid fa-layer-group"></i>
+                </button>
+                <button class="circle scale volume-on full-height full-width">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <button class="hide circle scale volume-off full-height full-width">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                </button>
+                <div class="volume-bar justify-self-start flex items-center">
+                    <input type="range">
+                </div>
+            </div>
         </div>
     </footer>
     
