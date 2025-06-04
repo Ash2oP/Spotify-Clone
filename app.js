@@ -22,6 +22,11 @@ const btns = {
     volumeOn : document.querySelector(".volume-on"),
     volumeOff : document.querySelector(".volume-off")
 };
+const musicPlayerUI = {
+    playerSongImg : document.querySelector(".player-song-img img"),
+    playerSongName : document.querySelector(".player-song-name a"),
+    playerSongArtist : document.querySelector(".player-song-artist a"),
+};
 let libraryContent = document.querySelector(".left-content");
 
 // Fetch Song Data
@@ -109,9 +114,14 @@ const fillSongDetails = async (data, i) => {
 
     // Play Song
     tempSongsUI.songBtn.forEach((ele, idx) => {
-        ele.addEventListener("click", () => {
+        ele.addEventListener("click", async () => {
            const clickedSong = tempSongsUI.songs[idx];
-           console.log(clickedSong);
+           const songDetails = {
+                imgDir : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_img"],
+                songName : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_name"],
+                songArtist : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_artist"]
+           };
+            await loadSong(songDetails.imgDir, songDetails.songName, songDetails.songArtist, clickedSong);
 
            if(currSongIndex == idx && !clickedSong.paused){
                 clickedSong.pause();
@@ -127,6 +137,13 @@ const fillSongDetails = async (data, i) => {
         })
     })
     
+}
+
+// Load Song 
+const loadSong = async (imgDir, songName, artistName, song) => {
+    musicPlayerUI.playerSongImg.setAttribute("src", `${imgDir}`);
+    musicPlayerUI.playerSongName.innerHTML = `${songName}`;
+    musicPlayerUI.playerSongArtist.innerHTML = `${artistName}`;
 }
 
 // Hiding Playlist
