@@ -26,6 +26,9 @@ const musicPlayerUI = {
     playerSongImg : document.querySelector(".player-song-img img"),
     playerSongName : document.querySelector(".player-song-name a"),
     playerSongArtist : document.querySelector(".player-song-artist a"),
+    playerContainer : document.querySelector(".player-audio"),
+    playerPlayBtn : document.querySelector(".music-player-play"),
+    playerPauseBtn : document.querySelector(".music-player-pause"),
 };
 let libraryContent = document.querySelector(".left-content");
 
@@ -115,22 +118,19 @@ const fillSongDetails = async (data, i) => {
     // Play Song
     tempSongsUI.songBtn.forEach((ele, idx) => {
         ele.addEventListener("click", async () => {
-           const clickedSong = tempSongsUI.songs[idx];
            const songDetails = {
                 imgDir : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_img"],
                 songName : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_name"],
-                songArtist : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_artist"]
+                songArtist : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_artist"],
+                songDir : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_dir"],
            };
-            await loadSong(songDetails.imgDir, songDetails.songName, songDetails.songArtist, clickedSong);
+            await loadSong(songDetails.imgDir, songDetails.songName, songDetails.songArtist, songDetails.songDir);
 
-           if(currSongIndex == idx && !clickedSong.paused){
-                clickedSong.pause();
+           if(currSongIndex == idx && !musicPlayerUI.playerContainer.querySelector("audio").paused){
+                await pauseSong();
                 currSongIndex = -1;
            } else {
-                tempSongsUI.songs.forEach((ele) => {
-                    ele.pause();
-                });
-                clickedSong.play();
+                await playSong();
                 currSongIndex = idx;
            } 
             
@@ -140,10 +140,34 @@ const fillSongDetails = async (data, i) => {
 }
 
 // Load Song 
-const loadSong = async (imgDir, songName, artistName, song) => {
+const loadSong = async (imgDir, songName, artistName, songDir) => {
     musicPlayerUI.playerSongImg.setAttribute("src", `${imgDir}`);
     musicPlayerUI.playerSongName.innerHTML = `${songName}`;
     musicPlayerUI.playerSongArtist.innerHTML = `${artistName}`;
+    musicPlayerUI.playerContainer.innerHTML = `<audio src="${songDir}"></audio>`;
+    musicPlayerUI.playerContainer.querySelector("audio").load();
+}
+
+// Play Song
+const playSong = async () => {
+    musicPlayerUI.playerContainer.querySelector("audio").play();
+    await exchangePlayPause();
+}
+
+// Pause Song
+const pauseSong = async () => {
+    musicPlayerUI.playerContainer.querySelector("audio").pause();
+    await exchangePlayPause();
+}
+
+const exchangePlayPause = async () => {
+    if(musicPlayerUI.playerContainer.querySelector("audio").paused){
+        musicPlayerUI.playerPauseBtn.classList.add("hide");
+        musicPlayerUI.playerPlayBtn.classList.remove("hide");
+    } else {
+        musicPlayerUI.playerPauseBtn.classList.remove("hide");
+        musicPlayerUI.playerPlayBtn.classList.add("hide");
+    }
 }
 
 // Hiding Playlist
@@ -236,4 +260,12 @@ btns.volumeOff.addEventListener("click", () => {
     btns.volumeOff.classList.add("hide");
     btns.volumeOn.classList.remove("hide");
     songsUI.volumeBar.value = '100';
+});
+
+musicPlayerUI.playerPauseBtn.addEventListener("click", async () => {
+    await pauseSong();
+});
+
+musicPlayerUI.playerPlayBtn.addEventListener("click", async () => {
+    await playSong();
 });
