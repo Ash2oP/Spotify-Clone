@@ -15,6 +15,8 @@ const bools = {
 const songsUI = {
     songsContainer : document.querySelector(".song-container"),
     volumeBar : document.querySelector(".volume-bar > input"),
+    songDuration : document.querySelector(".song-full-time span"),
+    songCurrDuration : document.querySelector(".song-curr-time span"),
 };
 const btns = {
     backBtn : document.querySelector("#Back-btn"),
@@ -145,7 +147,28 @@ const loadSong = async (imgDir, songName, artistName, songDir) => {
     musicPlayerUI.playerSongName.innerHTML = `${songName}`;
     musicPlayerUI.playerSongArtist.innerHTML = `${artistName}`;
     musicPlayerUI.playerContainer.innerHTML = `<audio src="${songDir}"></audio>`;
-    musicPlayerUI.playerContainer.querySelector("audio").load();
+    let song = musicPlayerUI.playerContainer.querySelector("audio");
+    song.load();
+    song.addEventListener("loadedmetadata", () => {
+        let totalDuration = song.duration.toFixed(0); 
+        let totalDurationMin = (totalDuration / 60).toFixed(0);
+        let totalDurationSec = totalDuration % 60;
+        if(totalDurationSec < 10){
+            songsUI.songDuration.innerHTML = `${totalDurationMin}:0${totalDurationSec}`;
+        }else {
+            songsUI.songDuration.innerHTML = `${totalDurationMin}:${totalDurationSec}`;
+        }
+    });
+    song.addEventListener("timeupdate", () => {
+        let currDuration = song.currentTime.toFixed(0);
+        let currDurationMin = (currDuration / 60).toFixed(0);
+        let currDurationSec = currDuration % 60;
+        if(currDurationSec < 10){
+            songsUI.songCurrDuration.innerHTML = `${currDurationMin}:0${currDurationSec}`;
+        }else {
+            songsUI.songCurrDuration.innerHTML = `${currDurationMin}:${currDurationSec}`;
+        }
+    });
 }
 
 // Play Song
