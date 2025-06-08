@@ -31,6 +31,7 @@ const musicPlayerUI = {
     playerContainer : document.querySelector(".player-audio"),
     playerPlayBtn : document.querySelector(".music-player-play"),
     playerPauseBtn : document.querySelector(".music-player-pause"),
+    playerProgressBar : document.querySelector(".song-time-front div"),
 };
 let libraryContent = document.querySelector(".left-content");
 
@@ -149,9 +150,11 @@ const loadSong = async (imgDir, songName, artistName, songDir) => {
     musicPlayerUI.playerContainer.innerHTML = `<audio src="${songDir}"></audio>`;
     let song = musicPlayerUI.playerContainer.querySelector("audio");
     song.load();
+    let tempSongLength;
     song.addEventListener("loadedmetadata", () => {
         let totalDuration = song.duration.toFixed(0); 
-        let totalDurationMin = (totalDuration / 60).toFixed(0);
+        tempSongLength = totalDuration;
+        let totalDurationMin = Math.floor(totalDuration / 60);
         let totalDurationSec = totalDuration % 60;
         if(totalDurationSec < 10){
             songsUI.songDuration.innerHTML = `${totalDurationMin}:0${totalDurationSec}`;
@@ -161,13 +164,15 @@ const loadSong = async (imgDir, songName, artistName, songDir) => {
     });
     song.addEventListener("timeupdate", () => {
         let currDuration = song.currentTime.toFixed(0);
-        let currDurationMin = (currDuration / 60).toFixed(0);
+        let currDurationMin = Math.floor(currDuration / 60);
         let currDurationSec = currDuration % 60;
         if(currDurationSec < 10){
             songsUI.songCurrDuration.innerHTML = `${currDurationMin}:0${currDurationSec}`;
         }else {
             songsUI.songCurrDuration.innerHTML = `${currDurationMin}:${currDurationSec}`;
         }
+        let progressPercent = (currDuration / tempSongLength) * 100;
+        musicPlayerUI.playerProgressBar.style.width = `${progressPercent}%`;
     });
 }
 
