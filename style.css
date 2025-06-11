@@ -586,6 +586,7 @@ footer {
     grid-row: 1/2;
     z-index: 1000;
     grid-template-columns: 1% 98%;
+    pointer-events: none;
 }
 .song-time-front div {
     grid-column: 2/3;

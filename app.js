@@ -17,6 +17,7 @@ const songsUI = {
     volumeBar : document.querySelector(".volume-bar > input"),
     songDuration : document.querySelector(".song-full-time span"),
     songCurrDuration : document.querySelector(".song-curr-time span"),
+    songLength : document.querySelectorAll(".song-length"),
 };
 const btns = {
     backBtn : document.querySelector("#Back-btn"),
@@ -32,6 +33,7 @@ const musicPlayerUI = {
     playerPlayBtn : document.querySelector(".music-player-play"),
     playerPauseBtn : document.querySelector(".music-player-pause"),
     playerProgressBar : document.querySelector(".song-time-front div"),
+    playerClickBar : document.querySelector(".song-time-back div"),
 };
 let libraryContent = document.querySelector(".left-content");
 
@@ -82,7 +84,7 @@ const fillSongDetails = async (data, i) => {
         songArtist : document.querySelectorAll("#song-artist"),
         songAlbum : document.querySelectorAll(".song-album a"),
         songBtn : document.querySelectorAll(".song-card"),
-        songs : document.querySelectorAll(".song")
+        songs : document.querySelectorAll(".song"),
     }
 
     // Added Index
@@ -138,8 +140,7 @@ const fillSongDetails = async (data, i) => {
            } 
             
         })
-    })
-    
+    }) 
 }
 
 // Load Song 
@@ -171,7 +172,7 @@ const loadSong = async (imgDir, songName, artistName, songDir) => {
         }else {
             songsUI.songCurrDuration.innerHTML = `${currDurationMin}:${currDurationSec}`;
         }
-        let progressPercent = (currDuration / tempSongLength) * 100;
+        const progressPercent = (currDuration / tempSongLength) * 100;
         musicPlayerUI.playerProgressBar.style.width = `${progressPercent}%`;
     });
 }
@@ -282,12 +283,14 @@ btns.volumeOn.addEventListener("click", () => {
     btns.volumeOff.classList.remove("hide");
     btns.volumeOn.classList.add("hide");
     songsUI.volumeBar.value = '0';
+    songsUI.volumeBar.dispatchEvent(new Event("input"));
 });
 
 btns.volumeOff.addEventListener("click", () => {
     btns.volumeOff.classList.add("hide");
     btns.volumeOn.classList.remove("hide");
-    songsUI.volumeBar.value = '100';
+    songsUI.volumeBar.value = '1';
+    songsUI.volumeBar.dispatchEvent(new Event("input"));
 });
 
 musicPlayerUI.playerPauseBtn.addEventListener("click", async () => {
@@ -296,4 +299,15 @@ musicPlayerUI.playerPauseBtn.addEventListener("click", async () => {
 
 musicPlayerUI.playerPlayBtn.addEventListener("click", async () => {
     await playSong();
+});
+
+songsUI.volumeBar.addEventListener("input", () => {
+    musicPlayerUI.playerContainer.querySelector("audio").volume = songsUI.volumeBar.value;
+});
+
+musicPlayerUI.playerClickBar.addEventListener("click", (e) => {
+    const rect = musicPlayerUI.playerClickBar.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percentage = clickX / rect.width;
+    musicPlayerUI.playerContainer.querySelector("audio").currentTime = musicPlayerUI.playerContainer.querySelector("audio").duration * percentage;
 });
