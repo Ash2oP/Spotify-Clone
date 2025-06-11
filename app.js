@@ -6,7 +6,8 @@ const playlistEle = {
     playlistTitle : document.querySelectorAll(".card-disc"),
     playlistTitleContainer : document.querySelector(".playlist-header-title"),
     playlistMenuIcon : document.querySelector("#topbar-menu-icon"),
-    playlistTopbarMenu : document.querySelector(".topbar-menu-dropdown")
+    playlistTopbarMenu : document.querySelector(".topbar-menu-dropdown"),
+    playlistPlay : document.querySelector(".play-start"),
 };
 const bools = {
     isPlaylistOpen : false,
@@ -243,6 +244,19 @@ musicPlayerUI.playerPrevious.addEventListener("click", async () => {
     }else {
         currSongIndex--;
     }
+    await playSong();
+});
+
+// Play First Btn
+playlistEle.playlistPlay.addEventListener("click", async () => {
+    const tempSongDetails = {
+            imgDir : tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_img"],
+            songName : tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_name"],
+            songArtist : tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_artist"],
+            songDir : tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_dir"],
+    };
+    await loadSong(tempSongDetails.imgDir, tempSongDetails.songName, tempSongDetails.songArtist, tempSongDetails.songDir);
+    currSongIndex = 0;
     await playSong();
 });
 
