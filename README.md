@@ -1,8 +1,16 @@
 Project- Spotify Clone with plain HTML, CSS & JS <br>
 Author- Ashish Raj Singh <br>
 
+#### Working Features:
+- Dynamically added playlists 
+- Dynamically filled music player 
+- Home, back and forward
+- Music Player play, pause, next , previous
+- Adjustable volume
+- Auto play next song
+
 #### URL:
-  ''
+  'https://spectacular-kleicha-365f87.netlify.app/'
 
 #### Key Takeaways:
 - To overlap content in a grid just match the grid row & column, then decide z-indexes.
@@ -18,6 +26,7 @@ Author- Ashish Raj Singh <br>
 #### To Learn after this:
 - About SVG's
 - Solidate Browser history api methods
+
 
 
   
