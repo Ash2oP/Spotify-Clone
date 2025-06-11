@@ -2,12 +2,13 @@ Project- Spotify Clone with plain HTML, CSS & JS <br>
 Author- Ashish Raj Singh <br>
 
 #### Working Features:
-- Dynamically added playlists 
-- Dynamically filled music player 
+- Dynamically working playlists 
+- Dynamically working music player 
 - Home, back and forward
 - Music Player play, pause, next , previous
 - Adjustable volume
 - Auto play next song
+- Playlist Play btn
 
 #### URL:
   'https://spectacular-kleicha-365f87.netlify.app/'
@@ -26,7 +27,7 @@ Author- Ashish Raj Singh <br>
 #### To Learn after this:
 - About SVG's
 - Solidate Browser history api methods
-
+- backend
 
 
   
