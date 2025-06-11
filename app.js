@@ -34,8 +34,11 @@ const musicPlayerUI = {
     playerPauseBtn : document.querySelector(".music-player-pause"),
     playerProgressBar : document.querySelector(".song-time-front div"),
     playerClickBar : document.querySelector(".song-time-back div"),
+    playerSong : document.querySelector(".player-audio audio"),
 };
 let libraryContent = document.querySelector(".left-content");
+let tempSongsData = {};
+let currSongIndex, totalSongIdx;
 
 // Fetch Song Data
 const getSongData = async () => {
@@ -86,6 +89,8 @@ const fillSongDetails = async (data, i) => {
         songBtn : document.querySelectorAll(".song-card"),
         songs : document.querySelectorAll(".song"),
     }
+    totalSongIdx = 0;
+    currSongIndex = -1;
 
     // Added Index
     tempSongsUI.songIdx.forEach((ele, idx) => {
@@ -116,9 +121,8 @@ const fillSongDetails = async (data, i) => {
     tempSongsUI.songs.forEach((ele, idx) => {
         ele.setAttribute("src", `${tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_dir"]}`);
         ele.load();
-    })
-
-    let currSongIndex = -1;
+        totalSongIdx++;
+    })  
 
     // Play Song
     tempSongsUI.songBtn.forEach((ele, idx) => {
@@ -130,7 +134,6 @@ const fillSongDetails = async (data, i) => {
                 songDir : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_dir"],
            };
             await loadSong(songDetails.imgDir, songDetails.songName, songDetails.songArtist, songDetails.songDir);
-
            if(currSongIndex == idx && !musicPlayerUI.playerContainer.querySelector("audio").paused){
                 await pauseSong();
                 currSongIndex = -1;
@@ -141,14 +144,17 @@ const fillSongDetails = async (data, i) => {
             
         })
     }) 
+    return tempSongsUI;
 }
+
+
 
 // Load Song 
 const loadSong = async (imgDir, songName, artistName, songDir) => {
     musicPlayerUI.playerSongImg.setAttribute("src", `${imgDir}`);
     musicPlayerUI.playerSongName.innerHTML = `${songName}`;
     musicPlayerUI.playerSongArtist.innerHTML = `${artistName}`;
-    musicPlayerUI.playerContainer.innerHTML = `<audio src="${songDir}"></audio>`;
+    musicPlayerUI.playerSong.setAttribute("src", `${songDir}`);
     let song = musicPlayerUI.playerContainer.querySelector("audio");
     song.load();
     let tempSongLength;
@@ -177,15 +183,36 @@ const loadSong = async (imgDir, songName, artistName, songDir) => {
     });
 }
 
+// Auto Play 
+musicPlayerUI.playerSong.addEventListener("ended", async () => {
+    const tempSongDetails = {
+            imgDir : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex + 1]]?.["song_img"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_img"],
+            songName : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex + 1]]?.["song_name"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_name"],
+            songArtist : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex + 1]]?.["song_artist"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_artist"],
+            songDir : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex + 1]]?.["song_dir"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_dir"],
+    };
+    await loadSong(tempSongDetails.imgDir, tempSongDetails.songName, tempSongDetails.songArtist, tempSongDetails.songDir);
+    if(currSongIndex == totalSongIdx - 1){
+        currSongIndex = 0;
+    }else {
+        currSongIndex++;
+    }
+    await playSong();
+    });
+
 // Play Song
 const playSong = async () => {
-    musicPlayerUI.playerContainer.querySelector("audio").play();
+    musicPlayerUI.playerSong.play();
     await exchangePlayPause();
 }
 
 // Pause Song
 const pauseSong = async () => {
-    musicPlayerUI.playerContainer.querySelector("audio").pause();
+    musicPlayerUI.playerSong.pause();
     await exchangePlayPause();
 }
 
@@ -239,7 +266,7 @@ playlistEle.playlistBtn.forEach((btn, idx) => {
         fillPLaylist(idx);
         const data = await getSongData();
         await fillSongs(data, idx);
-        await fillSongDetails(data, idx);
+        tempSongsData = await fillSongDetails(data, idx);
         activatePlaylist();
     })
 });
