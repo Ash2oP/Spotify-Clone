@@ -35,6 +35,8 @@ const musicPlayerUI = {
     playerProgressBar : document.querySelector(".song-time-front div"),
     playerClickBar : document.querySelector(".song-time-back div"),
     playerSong : document.querySelector(".player-audio audio"),
+    playerNext : document.querySelector(".music-player-next"),
+    playerPrevious : document.querySelector(".music-player-previous"),
 };
 let libraryContent = document.querySelector(".left-content");
 let tempSongsData = {};
@@ -134,7 +136,7 @@ const fillSongDetails = async (data, i) => {
                 songDir : tempSongsUI.songsListArr?.[tempSongsUI.songKeys[idx]]?.["song_dir"],
            };
             await loadSong(songDetails.imgDir, songDetails.songName, songDetails.songArtist, songDetails.songDir);
-           if(currSongIndex == idx && !musicPlayerUI.playerContainer.querySelector("audio").paused){
+           if(currSongIndex == idx && !musicPlayerUI.playerSong.paused){
                 await pauseSong();
                 currSongIndex = -1;
            } else {
@@ -147,15 +149,13 @@ const fillSongDetails = async (data, i) => {
     return tempSongsUI;
 }
 
-
-
 // Load Song 
 const loadSong = async (imgDir, songName, artistName, songDir) => {
     musicPlayerUI.playerSongImg.setAttribute("src", `${imgDir}`);
     musicPlayerUI.playerSongName.innerHTML = `${songName}`;
     musicPlayerUI.playerSongArtist.innerHTML = `${artistName}`;
     musicPlayerUI.playerSong.setAttribute("src", `${songDir}`);
-    let song = musicPlayerUI.playerContainer.querySelector("audio");
+    let song = musicPlayerUI.playerSong;
     song.load();
     let tempSongLength;
     song.addEventListener("loadedmetadata", () => {
@@ -202,7 +202,49 @@ musicPlayerUI.playerSong.addEventListener("ended", async () => {
         currSongIndex++;
     }
     await playSong();
-    });
+});
+
+// Next Song Btn
+musicPlayerUI.playerNext.addEventListener("click", async () => {
+    const tempSongDetails = {
+            imgDir : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex + 1]]?.["song_img"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_img"],
+            songName : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex + 1]]?.["song_name"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_name"],
+            songArtist : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex + 1]]?.["song_artist"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_artist"],
+            songDir : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex + 1]]?.["song_dir"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[0]]?.["song_dir"],
+    };
+    await loadSong(tempSongDetails.imgDir, tempSongDetails.songName, tempSongDetails.songArtist, tempSongDetails.songDir);
+    if(currSongIndex == totalSongIdx - 1){
+        currSongIndex = 0;
+    }else {
+        currSongIndex++;
+    }
+    await playSong();
+});
+
+// Previous Song Btn 
+musicPlayerUI.playerPrevious.addEventListener("click", async () => {
+    const tempSongDetails = {
+            imgDir : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex - 1]]?.["song_img"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[totalSongIdx - 1]]?.["song_img"],
+            songName : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex - 1]]?.["song_name"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[totalSongIdx - 1]]?.["song_name"],
+            songArtist : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex - 1]]?.["song_artist"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[totalSongIdx - 1]]?.["song_artist"],
+            songDir : tempSongsData.songsListArr?.[tempSongsData.songKeys[currSongIndex - 1]]?.["song_dir"] ||
+            tempSongsData.songsListArr?.[tempSongsData.songKeys[totalSongIdx - 1]]?.["song_dir"],
+    };
+    await loadSong(tempSongDetails.imgDir, tempSongDetails.songName, tempSongDetails.songArtist, tempSongDetails.songDir);
+    if(currSongIndex == 0){
+        currSongIndex = totalSongIdx - 1;
+    }else {
+        currSongIndex--;
+    }
+    await playSong();
+});
 
 // Play Song
 const playSong = async () => {
@@ -217,7 +259,7 @@ const pauseSong = async () => {
 }
 
 const exchangePlayPause = async () => {
-    if(musicPlayerUI.playerContainer.querySelector("audio").paused){
+    if(musicPlayerUI.playerSong.paused){
         musicPlayerUI.playerPauseBtn.classList.add("hide");
         musicPlayerUI.playerPlayBtn.classList.remove("hide");
     } else {
@@ -329,12 +371,12 @@ musicPlayerUI.playerPlayBtn.addEventListener("click", async () => {
 });
 
 songsUI.volumeBar.addEventListener("input", () => {
-    musicPlayerUI.playerContainer.querySelector("audio").volume = songsUI.volumeBar.value;
+    musicPlayerUI.playerSong.volume = songsUI.volumeBar.value;
 });
 
 musicPlayerUI.playerClickBar.addEventListener("click", (e) => {
     const rect = musicPlayerUI.playerClickBar.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const percentage = clickX / rect.width;
-    musicPlayerUI.playerContainer.querySelector("audio").currentTime = musicPlayerUI.playerContainer.querySelector("audio").duration * percentage;
+    musicPlayerUI.playerSong.currentTime = musicPlayerUI.playerSong.duration * percentage;
 });
